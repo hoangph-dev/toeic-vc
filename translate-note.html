@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EN→VI Editor</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #fff; --text: #1f2328; --muted: #6b7280;
+    --border: #d9dde3; --accent: #2563eb; --popup: #111827; --popup-text: #f9fafb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115; --panel: #171a21; --text: #e5e7eb; --muted: #9ca3af;
+      --border: #2a2f3a; --accent: #60a5fa; --popup: #f9fafb; --popup-text: #111827;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  h1 { font-size: 20px; margin: 0; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  button {
+    background: var(--panel); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 12px; font-size: 14px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  label.toggle { display: flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; user-select: none; }
+  textarea {
+    width: 100%; min-height: 60vh; resize: vertical; padding: 16px;
+    font-size: 17px; line-height: 1.7; font-family: inherit;
+    background: var(--panel); color: var(--text);
+    border: 1px solid var(--border); border-radius: 12px; outline: none;
+  }
+  textarea:focus { border-color: var(--accent); }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 8px; line-height: 1.6; }
+  .status { color: var(--muted); font-size: 13px; }
+  kbd { border: 1px solid var(--border); border-radius: 4px; padding: 0 4px; font-size: 12px; }
+
+  #popup {
+    position: fixed; z-index: 10; max-width: min(420px, calc(100vw - 32px));
+    background: var(--popup); color: var(--popup-text);
+    border-radius: 10px; padding: 10px 14px; font-size: 15px; line-height: 1.5;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25); display: none;
+  }
+  #popup .src { font-size: 12px; opacity: .65; margin-bottom: 4px; max-height: 60px; overflow: hidden; }
+  #popup .dst { font-weight: 500; white-space: pre-wrap; max-height: 50vh; overflow: auto; }
+  #popup .actions { margin-top: 8px; display: flex; gap: 8px; }
+  #popup .actions button { font-size: 12px; padding: 3px 8px; background: transparent; color: inherit; border-color: currentColor; opacity: .8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📝 EN → VI Editor</h1>
+    <div class="toolbar">
+      <label class="toggle"><input type="checkbox" id="clickMode" checked> Dịch khi click</label>
+      <button id="btnPara">Dịch đoạn hiện tại</button>
+      <button id="btnAll" class="primary">Dịch toàn bộ</button>
+      <button id="btnClear">Xoá</button>
+    </div>
+  </header>
+
+  <textarea id="editor" spellcheck="false" placeholder="Gõ hoặc dán văn bản tiếng Anh vào đây..."></textarea>
+
+  <div class="hint">
+    • <b>Click</b> vào một từ → dịch từ đó &nbsp;
+    • <b>Bôi đen</b> một cụm → dịch cụm đó &nbsp;
+    • <kbd>Alt</kbd>/<kbd>Ctrl</kbd> + click → dịch cả đoạn &nbsp;
+    • <kbd>Esc</kbd> → đóng popup<br>
+    <span class="status" id="status">Đã lưu tự động vào trình duyệt.</span>
+  </div>
+</div>
+
+<div id="popup">
+  <div class="src" id="popSrc"></div>
+  <div class="dst" id="popDst"></div>
+  <div class="actions">
+    <button id="popCopy">Copy</button>
+    <button id="popClose">Đóng</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'en-vi-editor:text';
+const MODE_KEY = 'en-vi-editor:clickMode';
+const editor = document.getElementById('editor');
+const clickMode = document.getElementById('clickMode');
+const statusEl = document.getElementById('status');
+const popup = document.getElementById('popup');
+const popSrc = document.getElementById('popSrc');
+const popDst = document.getElementById('popDst');
+const cache = new Map();
+
+// ---------- localStorage ----------
+try {
+  editor.value = localStorage.getItem(STORAGE_KEY) || '';
+  const m = localStorage.getItem(MODE_KEY);
+  if (m !== null) clickMode.checked = m === '1';
+} catch {}
+
+let saveTimer;
+editor.addEventListener('input', () => {
+  statusEl.textContent = 'Đang lưu...';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, editor.value);
+      statusEl.textContent = 'Đã lưu tự động vào trình duyệt.';
+    } catch { statusEl.textContent = 'Không lưu được (localStorage bị chặn).'; }
+  }, 400);
+});
+clickMode.addEventListener('change', () => {
+  try { localStorage.setItem(MODE_KEY, clickMode.checked ? '1' : '0'); } catch {}
+});
+
+// ---------- Translate ----------
+async function translate(text) {
+  text = text.trim();
+  if (!text) return '';
+  if (cache.has(text)) return cache.get(text);
+  let result;
+  try {
+    const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=' + encodeURIComponent(text);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    result = data[0].map(x => x[0]).join('');
+  } catch {
+    // Fallback: MyMemory (giới hạn ~500 ký tự / request)
+    const url = 'https://api.mymemory.translated.net/get?langpair=en|vi&q=' + encodeURIComponent(text.slice(0, 500));
+    const res = await fetch(url);
+    const data = await res.json();
+    result = data.responseData.translatedText;
+  }
+  cache.set(text, result);
+  return result;
+}
+
+// ---------- Lấy từ / đoạn tại vị trí con trỏ ----------
+function wordAt(text, pos) {
+  const isWord = c => /[A-Za-z0-9'\-]/.test(c);
+  let s = pos, e = pos;
+  while (s > 0 && isWord(text[s - 1])) s--;
+  while (e < text.length && isWord(text[e])) e++;
+  return text.slice(s, e).replace(/^['\-]+|['\-]+$/g, '');
+}
+function paragraphAt(text, pos) {
+  let s = text.lastIndexOf('\n', pos - 1) + 1;
+  let e = text.indexOf('\n', pos);
+  if (e === -1) e = text.length;
+  return text.slice(s, e);
+}
+
+// ---------- Popup ----------
+let lastX = 0, lastY = 0;
+function showPopup(src, dst, x = lastX, y = lastY) {
+  popSrc.textContent = src;
+  popDst.textContent = dst;
+  popup.style.display = 'block';
+  const r = popup.getBoundingClientRect();
+  let left = Math.min(x, window.innerWidth - r.width - 16);
+  let top = y + 18;
+  if (top + r.height > window.innerHeight - 8) top = y - r.height - 12;
+  popup.style.left = Math.max(16, left) + 'px';
+  popup.style.top = Math.max(8, top) + 'px';
+}
+function hidePopup() { popup.style.display = 'none'; }
+
+async function translateAndShow(src, x, y) {
+  src = src.trim();
+  if (!src) return;
+  showPopup(src, 'Đang dịch...', x, y);
+  try {
+    showPopup(src, await translate(src), x, y);
+  } catch {
+    showPopup(src, '⚠️ Lỗi dịch. Kiểm tra kết nối mạng.', x, y);
+  }
+}
+
+// ---------- Sự kiện click trên editor ----------
+editor.addEventListener('mouseup', (e) => {
+  lastX = e.clientX; lastY = e.clientY;
+  // Đợi trình duyệt cập nhật selection
+  setTimeout(() => {
+    const { selectionStart: a, selectionEnd: b, value } = editor;
+    if (a !== b) {                       // có bôi đen → dịch phần chọn
+      translateAndShow(value.slice(a, b), e.clientX, e.clientY);
+      return;
+    }
+    if (!clickMode.checked) return;
+    if (e.altKey || e.ctrlKey || e.metaKey) {
+      translateAndShow(paragraphAt(value, a), e.clientX, e.clientY);
+    } else {
+      const w = wordAt(value, a);
+      if (/[A-Za-z]/.test(w)) translateAndShow(w, e.clientX, e.clientY);
+      else hidePopup();
+    }
+  }, 0);
+});
+
+editor.addEventListener('keydown', (e) => { if (e.key !== 'Escape') hidePopup(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hidePopup(); });
+document.addEventListener('mousedown', (e) => {
+  if (!popup.contains(e.target) && e.target !== editor) hidePopup();
+});
+
+// ---------- Toolbar ----------
+function editorAnchor() {
+  const r = editor.getBoundingClientRect();
+  return [r.left + 24, r.top + 24];
+}
+document.getElementById('btnPara').onclick = () => {
+  const [x, y] = editorAnchor();
+  translateAndShow(paragraphAt(editor.value, editor.selectionStart), x, y);
+};
+document.getElementById('btnAll').onclick = () => {
+  const [x, y] = editorAnchor();
+  translateAndShow(editor.value, x, y);
+};
+document.getElementById('btnClear').onclick = () => {
+  if (editor.value && confirm('Xoá toàn bộ văn bản?')) {
+    editor.value = '';
+    editor.dispatchEvent(new Event('input'));
+    hidePopup();
+  }
+};
+document.getElementById('popClose').onclick = hidePopup;
+document.getElementById('popCopy').onclick = () => {
+  navigator.clipboard?.writeText(popDst.textContent);
+};
+</script>
+</body>
+</html>
