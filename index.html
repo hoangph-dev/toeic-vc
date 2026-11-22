@@ -2,41 +2,56 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="TOEIC 600"><meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#4F46E5"><title>TOEIC Vocab</title>
+<meta name="theme-color" content="#F4F5FA"><title>TOEIC 600</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="manifest" href="/manifest.webmanifest">
 <style>
-:root{--bg:#F7F8FA;--cd:#fff;--tx:#111827;--mu:#6B7280;--pr:#4F46E5;--pt:#fff;--ok:#22C55E;--wa:#F59E0B;--er:#EF4444;--bd:#E5E7EB;--sh:0 2px 12px rgba(17,24,39,.07);--sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)}
-[data-t=dark]{--bg:#0B0F1A;--cd:#151B2B;--tx:#EEF1F8;--mu:#93A0B8;--pr:#818CF8;--pt:#0B0F1A;--bd:#263047;--sh:0 2px 14px rgba(0,0,0,.45)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;overflow-x:hidden}
-#app{max-width:560px;margin:0 auto;padding:calc(var(--st) + 16px) max(16px,env(safe-area-inset-left)) calc(96px + var(--sb)) max(16px,env(safe-area-inset-right));animation:in .25s}
+:root{--bg:#F4F5FA;--cd:#fff;--tx:#1B1F33;--mu:#6A7189;--pr:#5B5BD6;--pt:#fff;--ps:#EDEDFB;--ok:#18946A;--oks:#E3F5EE;--wa:#B26A00;--was:#FFF1D9;--er:#CF3F4B;--ers:#FCE8EA;--bd:#E3E5EF;--sh:0 1px 2px rgba(27,31,51,.04),0 6px 20px rgba(27,31,51,.05);--sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)}
+[data-t=dark]{--bg:#0E1120;--cd:#171B2D;--tx:#E9EBF5;--mu:#9AA2BB;--pr:#8D8EF2;--pt:#0E1120;--ps:rgba(141,142,242,.16);--ok:#3CC796;--oks:rgba(60,199,150,.14);--wa:#F0A63A;--was:rgba(240,166,58,.14);--er:#F27A84;--ers:rgba(242,122,132,.14);--bd:#262C45;--sh:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.22)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#app{max-width:560px;margin:0 auto;padding:calc(var(--st) + 18px) max(18px,env(safe-area-inset-left)) calc(104px + var(--sb)) max(18px,env(safe-area-inset-right));animation:in .25s}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-h1{font-size:26px;margin:4px 0 2px}h2{font-size:19px;margin:20px 0 10px}.mu{color:var(--mu)}.sm{font-size:14px}
-.cd{background:var(--cd);border-radius:20px;padding:16px;box-shadow:var(--sh);margin-bottom:12px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g2 .cd{margin:0}.row{display:flex;gap:10px;align-items:center}.sp{justify-content:space-between}
-.big{font-size:28px;font-weight:700}
-.btn{display:block;width:100%;min-height:52px;border:0;border-radius:16px;background:var(--pr);color:var(--pt);font-weight:600;font-size:17px;padding:14px;margin-top:12px;cursor:pointer;text-align:center;text-decoration:none}
-.btn.s{background:var(--cd);color:var(--tx);box-shadow:var(--sh)}.btn.d{background:var(--er);color:#fff}.btn:active{transform:scale(.98)}
-.bar{height:10px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr);border-radius:9px;transition:width .4s}
-.fc{min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer}
-.fw{font-size:38px;font-weight:800;word-break:break-word}.tag{display:inline-block;background:var(--bd);border-radius:20px;padding:3px 11px;font-size:13px;margin:2px}
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.gr .btn{margin:0;font-size:16px}
-.ic{width:48px;height:48px;border-radius:50%;border:0;background:var(--bd);font-size:22px;color:var(--tx)}
-.op{display:block;width:100%;text-align:left;min-height:54px;border:2px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:16px;padding:12px 14px;margin-top:10px;font-size:16px}
-.op.ok{border-color:var(--ok);background:rgba(34,197,94,.15)}.op.no{border-color:var(--er);background:rgba(239,68,68,.15)}
+@media(min-width:900px){#app{max-width:760px}}
+h1{font-size:24px;line-height:1.25;letter-spacing:-.01em;margin:2px 0 2px;font-weight:700}h2{font-size:17px;margin:22px 0 10px;font-weight:650}.mu{color:var(--mu)}.sm{font-size:14px}
+.i{display:inline-block;fill:currentColor;flex:none;vertical-align:middle}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:20px;padding:16px;box-shadow:var(--sh);margin-bottom:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.g2 .cd{margin:0}.row{display:flex;gap:10px;align-items:center}.sp{justify-content:space-between}
+.big{font-size:26px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border:0;border-radius:16px;background:var(--pr);color:var(--pt);font-weight:600;font-size:16px;padding:13px 16px;margin-top:12px;cursor:pointer;text-align:center;text-decoration:none;transition:transform .12s,filter .2s}
+.btn.s{background:var(--cd);color:var(--tx);border:1px solid var(--bd);box-shadow:var(--sh)}.btn.d{background:var(--ers);color:var(--er)}.btn:active{transform:scale(.98)}.btn:hover{filter:brightness(1.04)}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr);border-radius:9px;transition:width .4s}
+.fc{min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;background:linear-gradient(160deg,var(--cd),color-mix(in srgb,var(--pr) 8%,var(--cd)))}
+.fw{font-size:36px;font-weight:800;letter-spacing:-.01em;word-break:break-word}.tag{display:inline-block;background:var(--ps);color:var(--pr);border-radius:20px;padding:3px 11px;font-size:13px;font-weight:600;margin:2px}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.gr .btn{margin:0;font-size:16px;flex-direction:column;gap:2px;min-height:58px}
+.gr .btn.g-again{background:var(--ers);color:var(--er)}.gr .btn.g-hard{background:var(--was);color:var(--wa)}.gr .btn.g-good{background:var(--ps);color:var(--pr)}.gr .btn.g-easy{background:var(--oks);color:var(--ok)}
+.ic{width:44px;height:44px;border-radius:50%;border:0;background:var(--ps);color:var(--pr);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none}.ic:active{transform:scale(.94)}
+.op{display:block;width:100%;text-align:left;min-height:54px;border:1.5px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:16px;padding:12px 14px;margin-top:10px;font-size:16px;cursor:pointer}
+.op.ok{border-color:var(--ok);background:var(--oks)}.op.no{border-color:var(--er);background:var(--ers)}
 input,select{width:100%;min-height:48px;border-radius:14px;border:1.5px solid var(--bd);background:var(--cd);color:var(--tx);font-size:16px;padding:10px 14px;margin-top:8px}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--bd);padding:6px 6px calc(6px + var(--sb));z-index:5}
-nav button{flex:1;border:0;background:none;color:var(--mu);font-weight:600;font-size:11px;min-height:52px;border-radius:14px}nav button b{display:block;font-size:22px;font-weight:400}nav button.on{color:var(--pr);background:rgba(129,140,248,.14)}
-.wi{display:flex;justify-content:space-between;gap:10px;padding:12px 4px;border-bottom:1px solid var(--bd);cursor:pointer}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:2px;background:color-mix(in srgb,var(--cd) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--bd);padding:8px 8px calc(8px + var(--sb));z-index:5}
+nav button{flex:1;max-width:120px;border:0;background:none;color:var(--mu);font-weight:600;font-size:11px;min-height:52px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
+nav .pl{width:54px;height:30px;border-radius:15px;display:flex;align-items:center;justify-content:center;transition:background .2s}nav button.on{color:var(--pr)}nav button.on .pl{background:var(--ps)}
+.wi{display:flex;justify-content:space-between;gap:10px;padding:12px 4px;border-bottom:1px solid var(--bd);cursor:pointer}.wi:last-child{border-bottom:0}
 .dot{width:10px;height:10px;border-radius:50%;flex:none;margin-top:7px}
-.md{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9;display:flex;align-items:flex-end;justify-content:center}.md>div{background:var(--bg);width:100%;max-width:560px;max-height:88dvh;overflow:auto;border-radius:24px 24px 0 0;padding:20px 16px calc(20px + var(--sb))}
+.md{position:fixed;inset:0;background:rgba(10,12,24,.5);z-index:9;display:flex;align-items:flex-end;justify-content:center}.md>div{background:var(--bg);width:100%;max-width:560px;max-height:88dvh;overflow:auto;border-radius:24px 24px 0 0;padding:20px 16px calc(20px + var(--sb))}
 .bars{display:flex;gap:8px;align-items:flex-end;height:110px}.bars div{flex:1;text-align:center;font-size:11px;color:var(--mu)}.bars i{display:block;background:var(--pr);border-radius:6px 6px 0 0;margin-bottom:4px;min-height:3px}
-.cf{position:fixed;top:-30px;font-size:28px;z-index:20;animation:fl 2.4s linear forwards;pointer-events:none}@keyframes fl{to{transform:translateY(110vh) rotate(360deg)}}
+.cf{position:fixed;top:-20px;width:9px;height:14px;border-radius:2px;z-index:20;animation:fl 2.4s linear forwards;pointer-events:none}@keyframes fl{to{transform:translateY(110vh) rotate(540deg)}}
+.chip{width:42px;height:42px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.t-pr{background:var(--ps);color:var(--pr)}.t-ok{background:var(--oks);color:var(--ok)}.t-wa{background:var(--was);color:var(--wa)}.t-er{background:var(--ers);color:var(--er)}
+.st{display:flex;align-items:center;gap:12px;padding:14px}.st .big{font-size:22px}
+.li{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--bd);cursor:pointer;color:var(--mu)}.li:last-child{border-bottom:0}.li .lt{flex:1;display:flex;flex-direction:column;line-height:1.35;color:var(--tx)}.li .lt b{font-weight:600}
+.li:active{opacity:.7}
+.hero{padding:18px}.hero .row{gap:16px}.ring{position:relative;width:96px;height:96px;flex:none}.ring svg{display:block}.rg-bg{fill:none;stroke:var(--bd);stroke-width:7}.rg-fg{fill:none;stroke:var(--pr);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .6s}
+.rg-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}.rg-t b{font-size:24px;font-weight:700}.rg-t span{font-size:11px;color:var(--mu)}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:4px 10px;font-size:13px;font-weight:600}
+.sec{font-size:13px;font-weight:650;color:var(--mu);text-transform:uppercase;letter-spacing:.05em;margin:20px 4px 8px}
+.res{width:76px;height:76px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}
+.fb{display:flex;align-items:center;gap:6px}
 @media(max-height:480px){.fc{min-height:180px}.fw{font-size:28px}}
 button,input,select,textarea{font-family:inherit}
 :focus-visible{outline:3px solid var(--pr);outline-offset:2px}[data-t=dark]{color-scheme:dark}
-.fc{background:linear-gradient(160deg,var(--cd),color-mix(in srgb,var(--pr) 9%,var(--cd)))}
-.btn small{display:block;font-weight:400;font-size:12px;opacity:.8;margin-top:2px}.btn,.op{transition:transform .12s,border-color .2s}
+.btn small{display:block;font-weight:500;font-size:12px;opacity:.8}.op{transition:transform .12s,border-color .2s}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.li .lt span{color:var(--mu)}h1+.g2,h1+.sp{margin-top:14px}input[type=file]{padding:10px 12px;font-size:14px}input[type=file]::file-selector-button{border:0;border-radius:10px;background:var(--ps);color:var(--pr);font-weight:600;padding:8px 12px;margin-right:10px}
 </style></head><body><div id="app"></div><div id="md"></div>
 <nav id="nav"></nav>
 <script src="/update.js"></script>
@@ -50,6 +65,8 @@ const TOPICS=[...new Set(W.map(w=>w.topic))],POSS=[...new Set(W.map(w=>w.pos))];
    KHÔNG đổi KEY và KHÔNG đổi thứ tự RAW (tiến trình lưu theo chỉ số từ): chỉ thêm từ mới vào CUỐI RAW. */
 const KEY='vocab_app_v1';let S;
 const DEF=()=>({cards:{},goal:20,hist:{},today:{d:'',n:0,nw:0,cel:false},streak:0,best:0,last:'',reviews:0,xp:0,qz:{runs:0,q:0,ok:0,list:[]},sound:true,auto:false,rate:.9,theme:'auto'});
+const IC={home:'M9 13h6v6h3v-9l-6-4.5L6 10v9h3zm-5 8V9l8-6 8 6v12z',cards:'M11.19 2.25c-.26 0-.52.06-.77.15L3.06 5.45a1.994 1.994 0 0 0-1.09 2.6L6.93 20a2 2 0 0 0 1.81 1.25c.26 0 .53-.03.79-.15l7.37-3.05a2.02 2.02 0 0 0 1.23-1.8c.01-.25-.04-.54-.13-.8L13 3.5a1.95 1.95 0 0 0-1.81-1.25m3.48 0 3.45 8.35V4.25a2 2 0 0 0-2-2m4.01 1.54v9.03l2.43-5.86a1.99 1.99 0 0 0-1.09-2.6m-10.28-.14 4.98 12.02-7.39 3.06L3.8 7.29',brain:'M21.33 12.91c.09 1.55-.62 3.04-1.89 3.95l.77 1.49c.23.45.26.98.06 1.45-.19.47-.58.84-1.06 1l-.79.25a1.687 1.687 0 0 1-1.86-.55L14.44 18c-.89-.15-1.73-.53-2.44-1.1-.5.15-1 .23-1.5.23-.88 0-1.76-.27-2.5-.79-.53.16-1.07.23-1.62.22-.79.01-1.57-.15-2.3-.45a4.1 4.1 0 0 1-2.43-3.61c-.08-.72.04-1.45.35-2.11-.29-.75-.32-1.57-.07-2.33C2.3 7.11 3 6.32 3.87 5.82c.58-1.69 2.21-2.82 4-2.7 1.6-1.5 4.05-1.66 5.83-.37.42-.11.86-.17 1.3-.17 1.36-.03 2.65.57 3.5 1.64 2.04.53 3.5 2.35 3.58 4.47.05 1.11-.25 2.2-.86 3.13.07.36.11.72.11 1.09m-5-1.41c.57.07 1.02.5 1.02 1.07a1 1 0 0 1-1 1h-.63c-.32.9-.88 1.69-1.62 2.29.25.09.51.14.77.21 5.13-.07 4.53-3.2 4.53-3.25a2.59 2.59 0 0 0-2.69-2.49 1 1 0 0 1-1-1 1 1 0 0 1 1-1c1.23.03 2.41.49 3.33 1.3.05-.29.08-.59.08-.89-.06-1.24-.62-2.32-2.87-2.53-1.25-2.96-4.4-1.32-4.4-.4-.03.23.21.72.25.75a1 1 0 0 1 1 1c0 .55-.45 1-1 1-.53-.02-1.03-.22-1.43-.56-.48.31-1.03.5-1.6.56-.57.05-1.04-.35-1.07-.9a.97.97 0 0 1 .88-1.1c.16-.02.94-.14.94-.77 0-.66.25-1.29.68-1.79-.92-.25-1.91.08-2.91 1.29C6.75 5 6 5.25 5.45 7.2 4.5 7.67 4 8 3.78 9c1.08-.22 2.19-.13 3.22.25.5.19.78.75.59 1.29-.19.52-.77.78-1.29.59-.73-.32-1.55-.34-2.3-.06-.32.27-.32.83-.32 1.27 0 .74.37 1.43 1 1.83.53.27 1.12.41 1.71.4q-.225-.39-.39-.81a1.038 1.038 0 0 1 1.96-.68c.4 1.14 1.42 1.92 2.62 2.05 1.37-.07 2.59-.88 3.19-2.13.23-1.38 1.34-1.5 2.56-1.5m2 7.47-.62-1.3-.71.16 1 1.25zm-4.65-8.61a1 1 0 0 0-.91-1.03c-.71-.04-1.4.2-1.93.67-.57.58-.87 1.38-.84 2.19a1 1 0 0 0 1 1c.57 0 1-.45 1-1 0-.27.07-.54.23-.76.12-.1.27-.15.43-.15.55.03 1.02-.38 1.02-.92',book:'m19 1-5 5v11l5-4.5zm2 4v13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6c-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1M10 18.41C8.75 18.09 7.5 18 6.5 18c-1.06 0-2.32.19-3.5.5V7.13c.91-.4 2.14-.63 3.5-.63s2.59.23 3.5.63z',chart:'M9 17H7v-7h2zm4 0h-2V7h2zm4 0h-2v-4h2zm2 2H5V5h14v14.1M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2',cog:'M12 8a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2m-2 12c-.25 0-.46-.18-.5-.42l-.37-2.65c-.63-.25-1.17-.59-1.69-.99l-2.49 1.01c-.22.08-.49 0-.61-.22l-2-3.46a.493.493 0 0 1 .12-.64l2.11-1.66L4.5 12l.07-1-2.11-1.63a.493.493 0 0 1-.12-.64l2-3.46c.12-.22.39-.31.61-.22l2.49 1c.52-.39 1.06-.73 1.69-.98l.37-2.65c.04-.24.25-.42.5-.42h4c.25 0 .46.18.5.42l.37 2.65c.63.25 1.17.59 1.69.98l2.49-1c.22-.09.49 0 .61.22l2 3.46c.13.22.07.49-.12.64L19.43 11l.07 1-.07 1 2.11 1.63c.19.15.25.42.12.64l-2 3.46c-.12.22-.39.31-.61.22l-2.49-1c-.52.39-1.06.73-1.69.98l-.37 2.65c-.04.24-.25.42-.5.42zm1.25-18-.37 2.61c-1.2.25-2.26.89-3.03 1.78L5.44 7.35l-.75 1.3L6.8 10.2a5.55 5.55 0 0 0 0 3.6l-2.12 1.56.75 1.3 2.43-1.04c.77.88 1.82 1.52 3.01 1.76l.37 2.62h1.52l.37-2.61c1.19-.25 2.24-.89 3.01-1.77l2.43 1.04.75-1.3-2.12-1.55c.4-1.17.4-2.44 0-3.61l2.11-1.55-.75-1.3-2.41 1.04a5.42 5.42 0 0 0-3.03-1.77L12.75 4z',fire:'M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.6.6 0 0 1-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.73 2.95 2.97 4.96 3.22 2.14.27 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.77-1.26-.77-1.26m-3.16 6.3c-.28.24-.74.5-1.1.6-1.12.4-2.24-.16-2.9-.82 1.19-.28 1.9-1.16 2.11-2.05.17-.8-.15-1.46-.28-2.23-.12-.74-.1-1.37.17-2.06.19.38.39.76.63 1.06.77 1 1.98 1.44 2.24 2.8.04.14.06.28.06.43.03.82-.33 1.72-.93 2.27',sound:'M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.7v2.07c4-.91 7-4.49 7-8.77s-3-7.86-7-8.77M16.5 12c0-1.77-1-3.29-2.5-4.03V16c1.5-.71 2.5-2.24 2.5-4M3 9v6h4l5 5V4L7 9z',ok:'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z',okf:'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z',no:'M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m2.59 6L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41z',nof:'M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12 6.47 2 12 2m3.59 5L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z',warn:'M12 2 1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2',redo:'M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 0 0-8 8 8 8 0 0 0 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z',star:'m12 6.7 1.45 3.85L17.3 12l-3.85 1.45L12 17.3l-1.45-3.85L6.7 12l3.85-1.45zM12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z',target:'M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1',search:'M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5',next:'M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6z',back:'M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z',play:'M8 5.14v14l11-7z',check:'M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z',bolt:'M11 15H6l7-14v8h5l-7 14z',trophy:'m15.2 10.7 1.4 5.3-4.6-3.8L7.4 16l1.4-5.2-4.2-3.5L10 7l2-5 2 5 5.4.3zM14 19h-1v-3l-1-1-1 1v3h-1c-1.1 0-2 .9-2 2v1h8v-1a2 2 0 0 0-2-2',newb:'M13.09 20c.12.72.37 1.39.72 2H6c-1.11 0-2-.89-2-2V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9.09c-.33-.05-.66-.09-1-.09s-.67.04-1 .09V4h-5v8l-2.5-2.25L8 12V4H6v16zM20 18v-3h-2v3h-3v2h3v3h2v-3h3v-2z',hist:'M13.5 8H12v5l4.28 2.54.72-1.21-3.5-2.08zM13 3a9 9 0 0 0-9 9H1l3.96 4.03L9 12H6a7 7 0 0 1 7-7 7 7 0 0 1 7 7 7 7 0 0 1-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.9 8.9 0 0 0 13 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9',medal:'M14.94 19.5 12 17.77 9.06 19.5l.78-3.34-2.59-2.24 3.41-.29L12 10.5l1.34 3.13 3.41.29-2.59 2.24M20 2H4v2l4.86 3.64a8 8 0 1 0 6.28 0L20 4m-2 11a6 6 0 1 1-7.18-5.88 5.9 5.9 0 0 1 2.36 0A6 6 0 0 1 18 15m-5.37-8h-1.26l-4-3h9.34Z',undo:'M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6a7 7 0 0 1 7-7 7 7 0 0 1 7 7 7 7 0 0 1-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.9 8.9 0 0 0 13 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9',list:'M7 5h14v2H7zm0 8v-2h14v2zM4 4.5A1.5 1.5 0 0 1 5.5 6 1.5 1.5 0 0 1 4 7.5 1.5 1.5 0 0 1 2.5 6 1.5 1.5 0 0 1 4 4.5m0 6A1.5 1.5 0 0 1 5.5 12 1.5 1.5 0 0 1 4 13.5 1.5 1.5 0 0 1 2.5 12 1.5 1.5 0 0 1 4 10.5M7 19v-2h14v2zm-3-2.5A1.5 1.5 0 0 1 5.5 18 1.5 1.5 0 0 1 4 19.5 1.5 1.5 0 0 1 2.5 18 1.5 1.5 0 0 1 4 16.5',close:'M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z',arrow:'M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z'};
+const I=(n,s=22)=>`<svg class="i" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><path d="${IC[n]}"/></svg>`;
 function merge(o){const d=DEF();if(!o||typeof o!=='object')return d;
  for(const k in d){const v=o[k];if(v===undefined||typeof v!==typeof d[k]||Array.isArray(v)!==Array.isArray(d[k]))continue;d[k]=(d[k]&&typeof d[k]==='object'&&!Array.isArray(d[k])&&k!=='cards'&&k!=='hist')?Object.assign(d[k],v):v}
  for(const id in d.cards){const c=d.cards[id];if(!W[id]||!c||!(c.iv>=0)||!(c.ease>0)||!isFinite(c.due))delete d.cards[id]}return d}
@@ -79,14 +96,14 @@ function grade(id,g){ // again: retry in 2 min | hard: small step | good: x ease
 const ivl=(c,g)=>g==='hard'?Math.max(.5,c.iv*1.2):g==='good'?(c.iv<1?1:c.iv*c.ease):(c.iv<1?3:c.iv*c.ease*1.4);
 const fmt=d=>d<1?Math.round(d*24)+' giờ':d<30?Math.round(d)+' ngày':Math.round(d/30)+' tháng';
 const nxt=(id,g)=>g==='again'?'2 phút':fmt(ivl(cd(id)||{iv:0,ease:2.5},g));
-const gbtn=id=>[['again','❌','Again','','d'],['hard','😐','Hard','background:var(--wa);color:#111',''],['good','🙂','Good','',''],['easy','😄','Easy','background:var(--ok);color:#111','']].map(g=>`<button class="btn ${g[4]}" style="${g[3]}" onclick="A.gr('${g[0]}')">${g[1]} ${g[2]}<small>${nxt(id,g[0])}</small></button>`).join('');
+const gbtn=id=>[['again','Quên','g-again'],['hard','Khó','g-hard'],['good','Tốt','g-good'],['easy','Dễ','g-easy']].map(g=>`<button class="btn ${g[2]}" onclick="A.gr('${g[0]}')">${g[1]}<small>${nxt(id,g[0])}</small></button>`).join('');
 const lvl=x=>Math.floor(Math.sqrt((x||0)/60))+1,TTS=()=>S.sound&&'speechSynthesis' in window;
 const curStreak=()=>S.last===day()||S.last===day(new Date(Date.now()-DAY))?S.streak:0;
 const accAll=()=>{let o=0,n=0;for(const k in S.cards){o+=S.cards[k].ok;n+=S.cards[k].n}return n?Math.round(o/n*100):0};
 function quizMark(id,right){ // quiz only touches stats, and pulls a seen word back if wrong
  const c=S.cards[id]||(S.cards[id]={iv:0,ease:2.5,due:9e15,x:1,ok:0,w:0,n:0,last:0});
  c.n++;c.last=Date.now();if(right){c.ok++;S.xp=(S.xp||0)+4}else{c.w++;if(!c.x){c.due=Date.now();c.iv=Math.min(c.iv,1)}}save()}
-function confetti(){for(let i=0;i<22;i++){const e=document.createElement('div');e.className='cf';e.textContent=['🎉','✨','⭐','🎊'][i%4];e.style.left=Math.random()*95+'%';e.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3400)}}
+function confetti(){const c=['#5B5BD6','#18946A','#F0A63A','#CF3F4B','#8D8EF2'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='cf';e.style.background=c[i%5];e.style.left=Math.random()*95+'%';e.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3400)}}
 
 /* ===== AUDIO (Web Speech API, optional) ===== */
 function say(t){if(!S.sound||!('speechSynthesis' in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=S.rate;const v=speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}}
@@ -95,19 +112,19 @@ function say(t){if(!S.sound||!('speechSynthesis' in window))return;try{speechSyn
 function startLearn(ids,title){
  if(!ids){const due=W.filter(w=>isDue(w.id)).sort((a,b)=>cd(a.id).due-cd(b.id).due).map(w=>w.id).slice(0,20);
   const nw=W.filter(w=>!seen(w.id)).map(w=>w.id).slice(0,Math.max(0,S.goal-(S.today.d===day()?S.today.nw||0:0)));ids=due.concat(nw);title='Học hôm nay'}
- if(!ids.length){alert('Hôm nay bạn đã xong mục tiêu 🎉 Tăng mục tiêu trong Cài đặt nếu muốn học thêm.');return}
+ if(!ids.length){alert('Hôm nay bạn đã xong mục tiêu. Tăng mục tiêu trong Cài đặt nếu muốn học thêm.');return}
  L={q:ids.slice(),i:0,flip:false,n:0,ok:0,title,again:{}};V='learn';render()}
 function learnView(){
  if(L.i>=L.q.length){const acc=L.n?Math.round(L.ok/L.n*100):0;
-  return `<div class="cd" style="text-align:center"><div style="font-size:54px">🎉</div><h1>Session complete!</h1><p class="mu">${L.n} lượt ôn</p><div class="big">Accuracy: ${acc}%</div>
-  ${cnt(wrongy)?'<button class="btn s" onclick="A.mist()">🔥 Review mistakes</button>':''}<button class="btn" onclick="A.go(\'home\')">Back to Home</button></div>`}
+  return `<div class="cd" style="text-align:center;padding:28px 16px"><div class="res t-ok">${I('trophy',40)}</div><h1>Hoàn thành buổi học!</h1><p class="mu">${L.n} lượt ôn</p><div class="big">Độ chính xác ${acc}%</div>
+  ${cnt(wrongy)?`<button class="btn s" onclick="A.mist()">${I('fire',20)} Ôn từ hay sai</button>`:''}<button class="btn" onclick="A.go('home')">Về trang chủ</button></div>`}
  const w=W[L.q[L.i]],pct=Math.round(L.i/L.q.length*100);
  let h=`<div class="row sp mu sm"><span>${esc(L.title)}</span><span>${L.i+1}/${L.q.length}</span></div><div class="bar" style="margin:8px 0 14px"><i style="width:${pct}%"></i></div>`;
  h+=`<div class="cd fc" role="button" tabindex="0" aria-label="Lật thẻ" onclick="A.flip()"><span class="tag">${esc(w.topic)} · ${esc(w.pos)}</span>`;
- if(!L.flip){h+=`<div class="fw">${esc(w.word)}</div>${w.pron?`<div class="mu">${esc(w.pron)}</div>`:''}<button class="ic" style="margin-top:14px" onclick="event.stopPropagation();say(W[${w.id}].word)" aria-label="Phát âm">🔊</button><p class="mu sm" style="margin-top:22px">Chạm để xem nghĩa</p>`}
+ if(!L.flip){h+=`<div class="fw">${esc(w.word)}</div>${w.pron?`<div class="mu">${esc(w.pron)}</div>`:''}<button class="ic" style="margin-top:14px" onclick="event.stopPropagation();say(W[${w.id}].word)" aria-label="Phát âm">${I('sound')}</button><p class="mu sm" style="margin-top:22px">Chạm để xem nghĩa</p>`}
  else h+=`<div class="fw" style="font-size:24px">${esc(w.word)}</div><div style="font-size:26px;font-weight:700;color:var(--pr);margin:10px 0">${esc(w.meaning)}</div><div class="mu">(${esc(w.pos)})</div>${w.example?`<p><i>${esc(w.example)}</i><br><span class="mu">${esc(w.translation)}</span></p>`:''}${w.synonyms?`<p class="sm">≈ ${esc(w.synonyms)}</p>`:''}${w.antonyms?`<p class="sm">≠ ${esc(w.antonyms)}</p>`:''}`;
  h+=`</div>`;
- h+=L.flip?`<div class="gr">${gbtn(w.id)}</div>`:`<button class="btn" onclick="A.flip()">Reveal</button>`;
+ h+=L.flip?`<div class="gr">${gbtn(w.id)}</div>`:`<button class="btn" onclick="A.flip()">Xem nghĩa</button>`;
  return h+`<button class="btn s" onclick="A.go('home')">Thoát</button>`}
 
 /* ===== QUIZ (4 types, smart selection) ===== */
@@ -120,20 +137,20 @@ function mkQ(id,t){const w=W[id];let pool=W.filter(x=>x.meaning!==w.meaning),sam
 function startQuiz(ids){ids=ids||pickIds(qn);if(!ids.length)return;
  Q={qs:ids.map((id,i)=>mkQ(id,i%4||(TTS()?0:1))),i:0,ok:0,bad:[],a:null,typed:''};Q.qs=shuf(Q.qs);V='quiz';render()}
 function quizView(){
- if(!Q)return `<h1>Quiz</h1><p class="mu">Ưu tiên từ hay sai, lâu chưa ôn và chưa học.</p><div class="cd"><b>Số câu</b><div class="gr">${[10,20].map(n=>`<button class="btn ${qn===n?'':'s'}" style="margin:0" onclick="qn=${n};render()">${n} câu</button>`).join('')}</div><button class="btn" onclick="startQuiz()">🧠 Quick Quiz</button>${cnt(wrongy)?`<button class="btn s" onclick="A.mquiz()">🔥 Quiz từ hay sai (${cnt(wrongy)})</button>`:''}</div>`;
+ if(!Q)return `<h1>Quiz</h1><p class="mu">Ưu tiên từ hay sai, lâu chưa ôn và chưa học.</p><div class="cd"><b>Số câu</b><div class="gr">${[10,20].map(n=>`<button class="btn ${qn===n?'':'s'}" style="margin:0" onclick="qn=${n};render()">${n} câu</button>`).join('')}</div><button class="btn" onclick="startQuiz()">${I('play',20)} Quiz nhanh</button>${cnt(wrongy)?`<button class="btn s" onclick="A.mquiz()">${I('fire',20)} Quiz từ hay sai (${cnt(wrongy)})</button>`:''}</div>`;
  if(Q.i>=Q.qs.length){const n=Q.qs.length,acc=Math.round(Q.ok/n*100);
-  return `<div class="cd" style="text-align:center"><h1>Kết quả</h1><div class="big">${Q.ok}/${n}</div><p class="mu">Accuracy ${acc}% · Đúng ${Q.ok} · Sai ${n-Q.ok}</p></div>
-  ${Q.bad.length?`<div class="cd"><b>Từ sai</b>${Q.bad.map(id=>`<div class="wi" role="button" tabindex="0" onclick="A.open(${id})"><b>${esc(W[id].word)}</b><span class="mu">${esc(W[id].meaning)}</span></div>`).join('')}</div><button class="btn" onclick="A.rev()">Review mistakes</button>`:''}
+  return `<div class="cd" style="text-align:center"><h1>Kết quả</h1><div class="big">${Q.ok}/${n}</div><p class="mu">Chính xác ${acc}% · Đúng ${Q.ok} · Sai ${n-Q.ok}</p></div>
+  ${Q.bad.length?`<div class="cd"><b>Từ sai</b>${Q.bad.map(id=>`<div class="wi" role="button" tabindex="0" onclick="A.open(${id})"><b>${esc(W[id].word)}</b><span class="mu">${esc(W[id].meaning)}</span></div>`).join('')}</div><button class="btn" onclick="A.rev()">Ôn từ sai</button>`:''}
   <button class="btn s" onclick="Q=null;render()">Làm lại</button>`}
- const q=Q.qs[Q.i],w=W[q.id],done=Q.a!==null;let h=`<div class="row sp mu sm"><span>Câu ${Q.i+1}/${Q.qs.length}</span><span>✅ ${Q.ok}</span></div><div class="bar" style="margin:8px 0"><i style="width:${Q.i/Q.qs.length*100}%"></i></div><div class="cd">`;
- if(q.t===0)h+=`<span class="mu sm">Nghe và chọn từ đúng</span><div style="text-align:center;margin:10px 0"><button class="ic" style="width:84px;height:84px;font-size:38px" aria-label="Nghe lại" onclick="say(W[${w.id}].word)">🔊</button></div>`;
- if(q.t===1)h+=`<span class="mu sm">English → Vietnamese</span><div class="fw">${esc(w.word)}</div><span class="tag">${esc(w.pos)}</span>`;
- if(q.t===2)h+=`<span class="mu sm">Vietnamese → English</span><div class="big" style="font-size:24px">${esc(w.meaning)}</div>`;
- if(q.t===3)h+=`<span class="mu sm">Type the answer</span><div class="big" style="font-size:24px">${esc(w.meaning)}</div><span class="tag">${esc(w.pos)} · ${w.word.length} chữ cái</span>`;
+ const q=Q.qs[Q.i],w=W[q.id],done=Q.a!==null;let h=`<div class="row sp mu sm"><span>Câu ${Q.i+1}/${Q.qs.length}</span><span class="fb" style="color:var(--ok)">${I('ok',18)} ${Q.ok}</span></div><div class="bar" style="margin:8px 0"><i style="width:${Q.i/Q.qs.length*100}%"></i></div><div class="cd">`;
+ if(q.t===0)h+=`<span class="mu sm">Nghe và chọn từ đúng</span><div style="text-align:center;margin:10px 0"><button class="ic" style="width:84px;height:84px;font-size:38px" aria-label="Nghe lại" onclick="say(W[${w.id}].word)">${I('sound',38)}</button></div>`;
+ if(q.t===1)h+=`<span class="mu sm">Anh → Việt</span><div class="fw">${esc(w.word)}</div><span class="tag">${esc(w.pos)}</span>`;
+ if(q.t===2)h+=`<span class="mu sm">Việt → Anh</span><div class="big" style="font-size:24px">${esc(w.meaning)}</div>`;
+ if(q.t===3)h+=`<span class="mu sm">Gõ đáp án</span><div class="big" style="font-size:24px">${esc(w.meaning)}</div><span class="tag">${esc(w.pos)} · ${w.word.length} chữ cái</span>`;
  h+='</div>';
  if(q.t<3)h+=q.o.map((id,k)=>{let c='';if(done){if(id===q.id)c='ok';else if(k===Q.a)c='no'}return `<button class="op ${c}" ${done?'disabled':''} onclick="A.pick(${k})">${esc(q.t===2||q.t===0?W[id].word:W[id].meaning)}</button>`}).join('');
  else h+=`<input id="ty" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Gõ từ tiếng Anh" value="${esc(Q.typed)}" ${done?'disabled':''} onkeydown="if(event.key==='Enter')A.chk()">${done?'':'<button class="btn" onclick="A.chk()">Kiểm tra</button>'}`;
- if(done){const r=Q.right;h+=`<div class="cd" style="margin-top:12px;border-left:5px solid var(--${r?'ok':'er'})"><b>${r?'✅ Chính xác!':'❌ Chưa đúng'}</b><br>Đáp án: <b>${esc(w.word)}</b> (${esc(w.pos)}) — ${esc(w.meaning)}${w.example?`<br><i class="sm">${esc(w.example)}</i>`:''}</div><button class="btn" onclick="A.next()">${Q.i+1>=Q.qs.length?'Xem kết quả':'Next'}</button>`}
+ if(done){const r=Q.right;h+=`<div class="cd" style="margin-top:12px;border-left:5px solid var(--${r?'ok':'er'})"><b class="fb" style="color:var(--${r?'ok':'er'})">${I(r?'okf':'nof',20)} ${r?'Chính xác!':'Chưa đúng'}</b><br>Đáp án: <b>${esc(w.word)}</b> (${esc(w.pos)}) — ${esc(w.meaning)}${w.example?`<br><i class="sm">${esc(w.example)}</i>`:''}</div><button class="btn" onclick="A.next()">${Q.i+1>=Q.qs.length?'Xem kết quả':'Câu tiếp theo'}</button>`}
  return h}
 function answered(right){const q=Q.qs[Q.i];Q.right=right;if(right)Q.ok++;else Q.bad.push(q.id);quizMark(q.id,right);render()}
 
@@ -145,11 +162,11 @@ function listHtml(){let a=W.filter(w=>(!F.t||w.topic===F.t)&&(!F.p||w.pos===F.p)
  if(F.s==='st')a.sort((x,y)=>['due','learning','new','mastered'].indexOf(status(x.id))-['due','learning','new','mastered'].indexOf(status(y.id)));
  return `<p class="mu sm">${a.length} từ</p>`+a.slice(0,F.lim).map(w=>`<div class="wi" role="button" tabindex="0" onclick="A.open(${w.id})"><div class="row" style="align-items:flex-start"><span class="dot" style="background:${sc[status(w.id)]}"></span><div><b>${esc(w.word)}</b> <span class="mu sm">${esc(w.pos)}</span><div class="mu sm">${esc(w.meaning)}</div></div></div><span class="mu sm">${w.topic.replace('Bài ','B')}</span></div>`).join('')+(a.length>F.lim?`<button class="btn s" onclick="F.lim+=100;A.list()">Hiện thêm</button>`:'')}
 function wordsView(){const o=(arr,v,l)=>arr.map(x=>`<option value="${esc(x)}" ${v===x?'selected':''}>${esc(x)}</option>`).join('');
- return `<h1>Vocabulary</h1><input id="q" type="search" placeholder="Tìm từ hoặc nghĩa tiếng Việt…" value="${esc(F.q)}" oninput="F.q=this.value.toLowerCase().trim();F.lim=80;A.list()">
+ return `<h1>Tra từ vựng</h1><input id="q" type="search" placeholder="Tìm từ hoặc nghĩa tiếng Việt…" value="${esc(F.q)}" oninput="F.q=this.value.toLowerCase().trim();F.lim=80;A.list()">
  <div class="g2"><select onchange="F.t=this.value;F.lim=80;A.list()"><option value="">Tất cả bài</option>${o(TOPICS,F.t)}</select><select onchange="F.p=this.value;F.lim=80;A.list()"><option value="">Mọi từ loại</option>${o(POSS,F.p)}</select></div>
  <select onchange="F.s=this.value;A.list()"><option value="az" ${F.s==='az'?'selected':''}>Sắp xếp: A → Z</option><option value="hard" ${F.s==='hard'?'selected':''}>Sắp xếp: Độ khó (hay sai)</option><option value="st" ${F.s==='st'?'selected':''}>Sắp xếp: Trạng thái học</option></select><div id="lst">${listHtml()}</div>`}
 function detail(id){const w=W[id],c=cd(id);
- $md().innerHTML=`<div class="md" onclick="if(event.target===this)A.close()"><div role="dialog" aria-modal="true"><div class="row sp"><div class="fw" style="font-size:30px">${esc(w.word)}</div><button class="ic" onclick="say(W[${w.id}].word)" aria-label="Phát âm">🔊</button></div>
+ $md().innerHTML=`<div class="md" onclick="if(event.target===this)A.close()"><div role="dialog" aria-modal="true"><div class="row sp"><div class="fw" style="font-size:30px">${esc(w.word)}</div><button class="ic" onclick="say(W[${w.id}].word)" aria-label="Phát âm">${I('sound')}</button></div>
  <span class="tag">${esc(w.pos)}</span><span class="tag">${esc(w.topic)}</span><span class="tag">${status(id)}</span>
  <div class="cd" style="margin-top:12px;font-size:20px;font-weight:600">${esc(w.meaning)}</div>
  ${c?`<div class="cd sm">Đã ôn ${c.n} lần · đúng ${c.ok} · sai ${c.w}<br>Khoảng cách: ${c.iv.toFixed(1)} ngày · Ôn tiếp: ${new Date(c.due).toLocaleDateString('vi-VN')}</div><button class="btn s" onclick="A.reset(${id})">Reset tiến trình từ này</button>`:'<p class="mu">Chưa học từ này.</p>'}
@@ -160,35 +177,48 @@ const $md=()=>document.getElementById('md');
 function statsView(){const acc=S.reviews?accAll():0;
  const days=[...Array(7)].map((_,i)=>{const d=new Date(Date.now()-(6-i)*DAY);return[['CN','T2','T3','T4','T5','T6','T7'][d.getDay()],S.hist[day(d)]||0]}),mx=Math.max(1,...days.map(d=>d[1]));
  const t=(n,l)=>`<div class="cd"><div class="big">${n}</div><span class="mu sm">${l}</span></div>`,qa=S.qz.q?Math.round(S.qz.ok/S.qz.q*100):0;
- return `<h1>Statistics</h1><div class="g2">${t(W.length,'Tổng số từ')}${t(cnt(seen),'Đã học')}${t(cnt(mastered),'Mastered')}${t(cnt(isDue),'Cần ôn hôm nay')}${t(acc+'%','Accuracy')}${t(S.reviews,'Tổng lượt ôn')}${t('🔥 '+curStreak(),'Streak hiện tại')}${t(S.best,'Streak dài nhất')}${t('⭐ '+lvl(S.xp),(S.xp||0)+' XP')}${t(cnt(wrongy),'Từ hay sai')}</div>
+ return `<h1>Thống kê</h1><div class="g2">${t(W.length,'Tổng số từ')}${t(cnt(seen),'Đã học')}${t(cnt(mastered),'Đã thuộc')}${t(cnt(isDue),'Cần ôn hôm nay')}${t(acc+'%','Độ chính xác')}${t(S.reviews,'Tổng lượt ôn')}${t(curStreak(),'Chuỗi ngày hiện tại')}${t(S.best,'Chuỗi dài nhất')}${t(lvl(S.xp),'Cấp độ · '+(S.xp||0)+' XP')}${t(cnt(wrongy),'Từ hay sai')}</div>
  <h2>7 ngày gần đây</h2><div class="cd bars">${days.map(d=>`<div><i style="height:${d[1]/mx*80}px"></i>${d[1]}<br>${d[0]}</div>`).join('')}</div>
  <h2>Quiz</h2><div class="cd">${S.qz.runs} lần làm · ${S.qz.q} câu · độ chính xác ${qa}%<div class="bar" style="margin-top:8px"><i style="width:${qa}%;background:var(--ok)"></i></div>${S.qz.list.length?`<p class="mu sm">Gần đây: ${S.qz.list.slice(-6).map(x=>x+'%').join(' · ')}</p>`:''}</div>`}
 
 /* ===== HOME / MISTAKES / SETTINGS ===== */
-function homeView(){const h=new Date().getHours(),n=S.today.d===day()?S.today.n:0,p=Math.min(100,n/S.goal*100),st=curStreak();
- const t=(e,n,l)=>`<div class="cd"><div class="big">${e} ${n}</div><span class="mu sm">${l}</span></div>`;
- return `<div class="row sp"><div><h1>${h<12?'Good morning':h<18?'Good afternoon':'Good evening'} 👋</h1><span class="mu">${W.length} từ · ${TOPICS.length} bài</span></div><button class="ic" onclick="A.go('set')" aria-label="Cài đặt">⚙️</button></div>
- <div class="cd" style="margin-top:14px"><div class="row sp"><b>Today's progress</b><span>🔥 ${st} day streak</span></div><div class="big" style="margin:6px 0">${n} / ${S.goal} lượt học</div><div class="bar"><i style="width:${p}%"></i></div><div class="row sp sm mu" style="margin-top:10px"><span>⭐ Level ${lvl(S.xp)}</span><span>${S.xp||0} XP</span></div></div>
- <div class="g2">${t('📚',cnt(id=>!seen(id)),'New words')}${t('🔄',cnt(isDue),'Due for review')}${t('✅',cnt(mastered),'Mastered')}${t('🎯',S.reviews?accAll()+'%':'–','Accuracy')}</div>
- <button class="btn" onclick="startLearn()">Start Learning</button><a class="btn s" href="ngu-phap.html">📖 Grammar</a><button class="btn s" onclick="startQuiz()">Quick Quiz</button><button class="btn s" onclick="A.mist()">🔥 Review Mistakes (${cnt(wrongy)})</button><button class="btn s" onclick="A.go('words')">Vocabulary</button>`}
+const gDone=()=>{try{return Object.keys(JSON.parse(localStorage.getItem('toeic_grammar_v1')).done).length}catch(e){return 0}};
+const ring=(p,a,b)=>{const c=2*Math.PI*34;return `<div class="ring"><svg viewBox="0 0 80 80" width="96" height="96"><circle cx="40" cy="40" r="34" class="rg-bg"/><circle cx="40" cy="40" r="34" class="rg-fg" transform="rotate(-90 40 40)" style="stroke-dasharray:${c};stroke-dashoffset:${c*(1-p/100)}"/></svg><div class="rg-t"><b>${a}</b><span>${b}</span></div></div>`};
+function homeView(){const h=new Date().getHours(),n=S.today.d===day()?S.today.n:0,p=Math.min(100,n/S.goal*100),st=curStreak(),gd=gDone();
+ const dt=new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'numeric'});
+ const stat=(ic,c,v,l)=>`<div class="cd st"><span class="chip t-${c}">${I(ic)}</span><div><div class="big">${v}</div><span class="mu sm">${l}</span></div></div>`;
+ const li=(ic,c,t,sub,act)=>`<div class="li" role="button" tabindex="0" onclick="${act}"><span class="chip t-${c}">${I(ic)}</span><div class="lt"><b>${t}</b><span class="sm">${sub}</span></div>${I('next',20)}</div>`;
+ return `<div class="row sp"><div><h1>${h<12?'Chào buổi sáng':h<18?'Chào buổi chiều':'Chào buổi tối'}</h1><span class="mu sm">${dt}</span></div><button class="ic" onclick="A.go('set')" aria-label="Cài đặt">${I('cog')}</button></div>
+ <div class="cd hero" style="margin-top:16px"><div class="row">${ring(p,n,'/ '+S.goal)}<div style="flex:1;min-width:0"><b>Tiến độ hôm nay</b><div class="mu sm" style="margin:2px 0 10px">${n>=S.goal?'Bạn đã đạt mục tiêu!':'Còn '+(S.goal-n)+' lượt nữa'}</div><div class="row" style="gap:6px;flex-wrap:wrap"><span class="pill t-wa">${I('fire',16)} ${st} ngày</span><span class="pill t-pr">${I('star',16)} Cấp ${lvl(S.xp)}</span></div></div></div><button class="btn" onclick="startLearn()">${I('play',20)} Bắt đầu học</button></div>
+ <div class="g2">${stat('newb','pr',cnt(id=>!seen(id)),'Từ mới')}${stat('hist','wa',cnt(isDue),'Cần ôn')}${stat('medal','ok',cnt(mastered),'Đã thuộc')}${stat('target','pr',S.reviews?accAll()+'%':'–','Chính xác')}</div>
+ <div class="sec">Luyện tập</div><div class="cd">
+ ${li('brain','pr','Quiz nhanh','10 câu, ưu tiên từ hay sai','startQuiz()')}
+ ${li('fire','er','Từ hay sai',cnt(wrongy)+' từ cần chú ý','A.mist()')}
+ ${li('book','ok','Ngữ pháp TOEIC',gd?'Đã nắm '+gd+' chuyên đề':'33 chuyên đề cho 600+ LR',"location.href='ngu-phap.html'")}
+ ${li('search','pr','Tra từ vựng',W.length+' từ · '+TOPICS.length+' bài',"A.go('words')")}</div>`}
 function mistView(){const ids=W.filter(w=>wrongy(w.id)).sort((a,b)=>cd(b.id).w-cd(a.id).w).map(w=>w.id);
- return `<h1>🔥 Words I Keep Getting Wrong</h1><p class="mu">Từ bạn sai từ 2 lần trở lên.</p>${ids.length?`<div class="g2"><button class="btn" style="margin:0" onclick="startLearn([${ids}],'Từ hay sai')">Flashcard</button><button class="btn" style="margin:0" onclick="startQuiz([${ids.slice(0,20)}])">Quiz</button></div><div class="cd" style="margin-top:12px">${ids.map(id=>`<div class="wi" role="button" tabindex="0"><div onclick="A.open(${id})"><b>${esc(W[id].word)}</b> <span class="mu sm">sai ${cd(id).w}</span><div class="mu sm">${esc(W[id].meaning)}</div></div><button class="ic" onclick="A.reset(${id})" aria-label="Reset từ">↺</button></div>`).join('')}</div>`:'<div class="cd">Chưa có từ nào 🎉</div>'}`}
+ return `<div class="row" style="margin-bottom:6px"><button class="ic" onclick="A.go('home')" aria-label="Quay lại">${I('back')}</button><div><h1>Từ hay sai</h1><span class="mu sm">Những từ bạn sai từ 2 lần trở lên</span></div></div>${ids.length?`<div class="g2" style="margin-top:14px"><button class="btn" style="margin:0" onclick="startLearn([${ids}],'Từ hay sai')">${I('cards',20)} Flashcard</button><button class="btn" style="margin:0" onclick="startQuiz([${ids.slice(0,20)}])">${I('brain',20)} Quiz</button></div><div class="cd">${ids.map(id=>`<div class="wi" role="button" tabindex="0"><div onclick="A.open(${id})"><b>${esc(W[id].word)}</b> <span class="mu sm">sai ${cd(id).w} lần</span><div class="mu sm">${esc(W[id].meaning)}</div></div><button class="ic" onclick="A.reset(${id})" aria-label="Đặt lại từ">${I('undo',20)}</button></div>`).join('')}</div>`:`<div class="cd" style="text-align:center;margin-top:14px"><div class="res t-ok">${I('okf',40)}</div><b>Chưa có từ nào</b><p class="mu sm">Từ sai từ 2 lần trở lên sẽ xuất hiện ở đây.</p></div>`}`}
 function learnTab(){const d=cnt(isDue),n=cnt(id=>!seen(id));
- return `<h1>Learn</h1><div class="cd"><b>Học hôm nay</b><p class="mu">${d} từ cần ôn + từ mới theo mục tiêu ngày.</p><button class="btn" onclick="startLearn()">Start Learning</button></div><div class="cd"><b>Học theo bài</b>${TOPICS.map(t=>{const ids=W.filter(w=>w.topic===t),n=ids.filter(w=>seen(w.id)).length;return `<div class="wi" role="button" tabindex="0" onclick="A.byTopic('${t}')"><div style="flex:1"><b>${t}</b><div class="bar" style="margin-top:6px"><i style="width:${n/ids.length*100}%"></i></div></div><span class="mu sm">${n}/${ids.length}</span></div>`}).join('')}</div><div class="cd"><b>Ôn từ hay sai</b><button class="btn s" onclick="A.mist()">🔥 Review Mistakes</button></div><p class="mu sm">Còn ${n} từ chưa học.</p>`}
-function setView(){return `<h1>Settings</h1><div class="cd"><b>Mục tiêu mỗi ngày</b><div class="gr">${[5,10,20,30].map(n=>`<button class="btn ${S.goal===n?'':'s'}" style="margin:0" onclick="S.goal=${n};save();render()">${n} từ</button>`).join('')}</div><input type="number" inputmode="numeric" min="1" placeholder="Tùy chỉnh (${S.goal})" onchange="S.goal=Math.max(1,+this.value||S.goal);save();render()"></div>
+ return `<h1>Học từ</h1><span class="mu sm">Còn ${n} từ chưa học</span>
+ <div class="cd hero" style="margin-top:14px"><div class="row"><span class="chip t-pr">${I('cards')}</span><div><b>Học hôm nay</b><div class="mu sm">${d} từ cần ôn + từ mới theo mục tiêu</div></div></div><button class="btn" onclick="startLearn()">${I('play',20)} Bắt đầu học</button></div>
+ <div class="sec">Học theo bài</div><div class="cd">${TOPICS.map(t=>{const ids=W.filter(w=>w.topic===t),n=ids.filter(w=>seen(w.id)).length;return `<div class="wi" role="button" tabindex="0" onclick="A.byTopic('${t}')"><div style="flex:1"><b>${t}</b><div class="bar" style="margin-top:6px"><i style="width:${n/ids.length*100}%"></i></div></div><span class="mu sm">${n}/${ids.length}</span></div>`}).join('')}</div>
+ <div class="sec">Công cụ</div><div class="cd">
+ <div class="li" role="button" tabindex="0" onclick="A.go('words')"><span class="chip t-pr">${I('search')}</span><div class="lt"><b>Tra từ vựng</b><span class="sm">Tìm theo từ, nghĩa, bài, từ loại</span></div>${I('next',20)}</div>
+ <div class="li" role="button" tabindex="0" onclick="A.mist()"><span class="chip t-er">${I('fire')}</span><div class="lt"><b>Từ hay sai</b><span class="sm">${cnt(wrongy)} từ cần chú ý</span></div>${I('next',20)}</div></div>`}
+function setView(){return `<h1>Cài đặt</h1><div class="cd"><b>Mục tiêu mỗi ngày</b><div class="gr">${[5,10,20,30].map(n=>`<button class="btn ${S.goal===n?'':'s'}" style="margin:0" onclick="S.goal=${n};save();render()">${n} từ</button>`).join('')}</div><input type="number" inputmode="numeric" min="1" placeholder="Tùy chỉnh (${S.goal})" onchange="S.goal=Math.max(1,+this.value||S.goal);save();render()"></div>
  <div class="cd"><b>Giao diện</b><select onchange="S.theme=this.value;save();applyTheme();render()">${[['auto','Tự động'],['light','Sáng'],['dark','Tối']].map(x=>`<option value="${x[0]}" ${S.theme===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select></div>
  <div class="cd"><b>Âm thanh</b><select aria-label="Phát âm" onchange="S.sound=this.value!=='0';S.auto=this.value==='2';save()"><option value="0" ${S.sound?'':'selected'}>Tắt phát âm</option><option value="1" ${S.sound&&!S.auto?'selected':''}>Bật (chạm để nghe)</option><option value="2" ${S.sound&&S.auto?'selected':''}>Tự phát âm khi hiện thẻ</option></select><select onchange="S.rate=+this.value;save();say('essential')">${[[.6,'Chậm'],[.9,'Bình thường'],[1.1,'Nhanh']].map(x=>`<option value="${x[0]}" ${S.rate===x[0]?'selected':''}>Tốc độ: ${x[1]}</option>`).join('')}</select></div>
- <div class="cd"><b>Sao lưu tiến trình</b><button class="btn" onclick="A.exp()">Export JSON</button><input type="file" accept=".json,application/json" onchange="A.impF(this)"><textarea id="ta" rows="3" placeholder="Hoặc dán JSON vào đây" style="width:100%;margin-top:8px;border-radius:14px;padding:10px;font:14px monospace;background:var(--cd);color:var(--tx);border:1.5px solid var(--bd)"></textarea><button class="btn s" onclick="A.impT()">Import từ văn bản</button></div>
+ <div class="cd"><b>Sao lưu tiến trình</b><button class="btn" onclick="A.exp()">Xuất file sao lưu</button><input type="file" accept=".json,application/json" onchange="A.impF(this)"><textarea id="ta" rows="3" placeholder="Hoặc dán JSON vào đây" style="width:100%;margin-top:8px;border-radius:14px;padding:10px;font:14px monospace;background:var(--cd);color:var(--tx);border:1.5px solid var(--bd)"></textarea><button class="btn s" onclick="A.impT()">Import từ văn bản</button></div>
  <button class="btn d" onclick="A.wipe()">Reset toàn bộ tiến trình</button>`}
 
 /* ===== NAVIGATION + ACTIONS ===== */
-const TABS=[['home','🏠','Home'],['learn','📚','Learn'],['quiz','🧠','Quiz'],['words','🔎','Words'],['stats','📊','Stats']];
-function applyTheme(){const dk=S.theme==='dark'||(S.theme==='auto'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.t=dk?'dark':'light';document.querySelector('meta[name=theme-color]').content=dk?'#0B0F1A':'#4F46E5'}
+const TABS=[['home','home','Trang chủ'],['learn','cards','Học từ'],['quiz','brain','Quiz'],['gram','book','Ngữ pháp'],['stats','chart','Thống kê']];
+function applyTheme(){const dk=S.theme==='dark'||(S.theme==='auto'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.t=dk?'dark':'light';document.querySelector('meta[name=theme-color]').content=dk?'#0E1120':'#F4F5FA'}
 function render(){const app=document.getElementById('app');
  const m={home:homeView,learn:()=>L?learnView():learnTab(),quiz:quizView,words:wordsView,stats:statsView,mist:mistView,set:setView};
  app.innerHTML=m[V]();app.style.animation='none';void app.offsetWidth;app.style.animation='';
- const tab=V==='mist'||V==='set'?'home':V;
- document.getElementById('nav').innerHTML=TABS.map(t=>`<button class="${t[0]===tab?'on':''}" aria-current="${t[0]===tab?'page':'false'}" onclick="A.go('${t[0]}')"><b aria-hidden="true">${t[1]}</b>${t[2]}</button>`).join('');
+ const tab=V==='mist'||V==='set'?'home':V==='words'?'learn':V;
+ document.getElementById('nav').innerHTML=TABS.map(t=>`<button class="${t[0]===tab?'on':''}" aria-current="${t[0]===tab?'page':'false'}" onclick="${t[0]==='gram'?"location.href='ngu-phap.html'":"A.go('"+t[0]+"')"}"><span class="pl">${I(t[1])}</span>${t[2]}</button>`).join('');
  if(V==='quiz'&&Q&&Q.a===null&&Q.qs[Q.i]&&Q.qs[Q.i].t===3){const e=document.getElementById('ty');if(e)e.focus()}
  if(V==='learn'&&L&&L.i<L.q.length&&!L.flip&&S.auto&&L.sp!==L.i){L.sp=L.i;say(W[L.q[L.i]].word)}
  if(V==='quiz'&&Q&&Q.a===null&&Q.qs[Q.i]&&Q.qs[Q.i].t===0&&Q.sp!==Q.i){Q.sp=Q.i;say(W[Q.qs[Q.i].id].word)}}
@@ -199,7 +229,7 @@ const A={
  pick(k){if(Q.a!==null)return;Q.a=k;const q=Q.qs[Q.i];answered(q.o[k]===q.id||W[q.o[k]].meaning===W[q.id].meaning)},
  chk(){if(Q.a!==null)return;const v=document.getElementById('ty').value,n=s=>s.toLowerCase().replace(/\s+/g,' ').trim();Q.typed=v;Q.a=-1;const w=W[Q.qs[Q.i].id];answered(W.some(x=>x.meaning===w.meaning&&n(x.word)===n(v)))},
  next(){Q.i++;Q.a=null;Q.typed='';if(Q.i>=Q.qs.length){const n=Q.qs.length;S.qz.runs++;S.qz.q+=n;S.qz.ok+=Q.ok;S.qz.list.push(Math.round(Q.ok/n*100));S.qz.list=S.qz.list.slice(-20);save()}render()},
- rev(){const b=Q.bad.slice();Q=null;startLearn(b,'Review mistakes')},
+ rev(){const b=Q.bad.slice();Q=null;startLearn(b,'Ôn từ sai')},
  mist(){V='mist';L=null;render()},
  mquiz(){startQuiz(pickIds(10,W.filter(w=>wrongy(w.id)).map(w=>w.id)))},
  byTopic(t){startLearn(W.filter(w=>w.topic===t&&(!seen(w.id)||isDue(w.id))).map(w=>w.id),t)},
@@ -215,9 +245,9 @@ const A={
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;const t=e.target,k=e.key,b=t.tagName==='BUTTON',ok=k==='Enter'||k===' ';
  if($md().innerHTML){if(k==='Escape')A.close();return}
  if(/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName))return;
- if(k==='Enter'&&t.classList&&t.classList.contains('wi')){t.click();return}
+ if(k==='Enter'&&t.classList&&(t.classList.contains('wi')||t.classList.contains('li'))){t.click();return}
  if(V==='learn'&&L&&L.i<L.q.length){if(ok&&!b){e.preventDefault();L.flip?A.gr('good'):A.flip()}else if(L.flip&&/^[1-4]$/.test(k))A.gr(['again','hard','good','easy'][k-1]);else if(k==='s'||k==='S')say(W[L.q[L.i]].word)}
  else if(V==='quiz'&&Q&&Q.i<Q.qs.length){const q=Q.qs[Q.i];if(Q.a===null&&q.t<3&&/^[1-4]$/.test(k)&&k<=q.o.length)A.pick(k-1);else if(Q.a!==null&&ok&&!b){e.preventDefault();A.next()}}});
 try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(S.theme==='auto')applyTheme()})}catch(e){}
-load();applyTheme();render();
+load();applyTheme();{const h=location.hash.slice(1);if(['home','learn','quiz','words','stats'].includes(h))V=h}render();
 </script></body></html>
