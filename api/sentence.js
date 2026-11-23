@@ -48,7 +48,7 @@ async function gemini(p, model) {
       generationConfig: gc
     })
   });
-  if (!r.ok) { const e = new Error('upstream'); e.status = r.status; e.detail = (await r.text().catch(() => '')).slice(0, 300); throw e; }
+  if (!r.ok) { const e = new Error('upstream'); e.status = r.status; e.model = model; e.detail = (await r.text().catch(() => '')).slice(0, 300); throw e; }
   const j = await r.json();
   const parts = (j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || [];
   return parse(parts.filter(x => !x.thought).map(x => x.text || '').join(''));
@@ -63,7 +63,7 @@ async function claude(p) {
       messages: [{ role: 'user', content: p }]
     })
   });
-  if (!r.ok) { const e = new Error('upstream'); e.status = r.status; e.detail = (await r.text().catch(() => '')).slice(0, 300); throw e; }
+  if (!r.ok) { const e = new Error('upstream'); e.status = r.status; e.model = model; e.detail = (await r.text().catch(() => '')).slice(0, 300); throw e; }
   const j = await r.json();
   return parse((j.content || []).map(x => x.text || '').join(''));
 }
@@ -94,7 +94,7 @@ module.exports = async (req, res) => {
   if (!(useClaude ? process.env.ANTHROPIC_API_KEY : process.env.GEMINI_API_KEY)) return send(500, { error: 'config', msg: 'Server chưa có API key' });
   try {
     let out = null, last = null;
-    const models = useClaude ? [''] : (process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite,gemini-3.5-flash-lite,gemini-3.6-flash').split(',').map(x => x.trim()).filter(Boolean);
+    const models = useClaude ? [''] : (process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite,gemini-3.5-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash').split(',').map(x => x.trim()).filter(Boolean);
     for (const m of models) { // quá tải / hết lượt / sai tên model: thử model kế tiếp
       for (let i = 0; i < 2 && !out; i++) {
         try { out = await (useClaude ? claude(prompt(q)) : gemini(prompt(q), m)); }
@@ -108,6 +108,6 @@ module.exports = async (req, res) => {
     return send(200, out);
   } catch (e) {
     if (e.status === 429) return send(503, { error: 'quota' });
-    return send(502, { error: 'upstream', status: e.status || 0, detail: e.detail || String(e.message || e).slice(0, 200) });
+    return send(502, { error: 'upstream', status: e.status || 0, model: e.model || '', detail: e.detail || String(e.message || e).slice(0, 200) });
   }
 };

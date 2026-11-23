@@ -129,7 +129,7 @@ const AI={d:{pass:'',ctx:'mix',c:{}},busy:-1,err:'',vi:{},
   try{
    const r=await fetch('/api/sentence',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:this.d.pass,word:w.word,pos:w.pos,meaning:w.meaning,ctx:this.d.ctx,avoid:this.list(id).map(x=>x.en)})});
    const j=await r.json().catch(()=>({}));
-   if(!r.ok){this.err=({pass:'Mã truy cập chưa đúng. Kiểm tra lại trong Cài đặt.',rate:'Bạn thử quá nhanh. Đợi một lúc rồi thử lại.',quota:'Đã hết lượt miễn phí tạm thời. Thử lại sau ít phút.',config:j.msg||'Server chưa cấu hình xong.',word:'Từ này không tạo câu được.',invalid:'AI trả về câu chưa hợp lệ. Bấm thử lại.'})[j.error]||('Chưa tạo được câu (HTTP '+r.status+(j.error?', '+j.error:'')+').');if(j.error==='upstream')this.err='AI báo lỗi'+(j.status?' '+j.status:'')+': '+(j.detail||'').slice(0,160)}
+   if(!r.ok){this.err=({pass:'Mã truy cập chưa đúng. Kiểm tra lại trong Cài đặt.',rate:'Bạn thử quá nhanh. Đợi một lúc rồi thử lại.',quota:'Đã hết lượt miễn phí tạm thời. Thử lại sau ít phút.',config:j.msg||'Server chưa cấu hình xong.',word:'Từ này không tạo câu được.',invalid:'AI trả về câu chưa hợp lệ. Bấm thử lại.'})[j.error]||('Chưa tạo được câu (HTTP '+r.status+(j.error?', '+j.error:'')+').');if(j.error==='upstream')this.err='AI báo lỗi'+(j.status?' '+j.status:'')+(j.model?' ('+j.model+')':'')+': '+(j.detail||'').slice(0,160)}
    else{const l=this.d.c[id]||(this.d.c[id]=[]);l.push({en:j.en,vi:j.vi});if(l.length>5)l.shift();this.vi[id]=false;this.save()}
   }catch(e){this.err='Không kết nối được máy chủ. Thử lại sau.'}
   this.busy=-1;render()},
