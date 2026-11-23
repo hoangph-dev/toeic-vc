@@ -52,6 +52,12 @@ button,input,select,textarea{font-family:inherit}
 .btn small{display:block;font-weight:500;font-size:12px;opacity:.8}.op{transition:transform .12s,border-color .2s}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .li .lt span{color:var(--mu)}h1+.g2,h1+.sp{margin-top:14px}input[type=file]{padding:10px 12px;font-size:14px}input[type=file]::file-selector-button{border:0;border-radius:10px;background:var(--ps);color:var(--pr);font-weight:600;padding:8px 12px;margin-right:10px}
+.ai{width:100%;margin-top:14px;padding-top:14px;border-top:1px dashed var(--bd);text-align:left;cursor:default}
+.ai .en{font-size:18px;font-weight:600;line-height:1.45}.ai .en b{color:var(--pr)}
+.ai .vi{margin-top:8px;padding:8px 12px;border-radius:12px;background:var(--ps);color:var(--tx);font-size:15px}
+.ai .rw{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.ai .sb{border:0;border-radius:20px;padding:8px 14px;background:var(--ps);color:var(--pr);font:600 14px inherit;display:inline-flex;align-items:center;gap:6px;cursor:pointer;min-height:40px}
+.ai .sb:disabled{opacity:.6}.ai .er{color:var(--er);font-size:14px;margin-top:8px}
 </style></head><body><div id="app"></div><div id="md"></div>
 <nav id="nav"></nav>
 <script src="/update.js"></script>
@@ -108,6 +114,35 @@ function confetti(){const c=['#5B5BD6','#18946A','#F0A63A','#CF3F4B','#8D8EF2'];
 /* ===== AUDIO (Web Speech API, optional) ===== */
 function say(t){if(!S.sound||!('speechSynthesis' in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=S.rate;const v=speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}}
 
+/* ===== AI: đặt câu (qua /api/sentence) ===== */
+const AK='toeic_ai_v1';
+const AI={d:{pass:'',ctx:'mix',c:{}},busy:-1,err:'',vi:{},
+ load(){try{const o=JSON.parse(localStorage.getItem(AK));if(o&&typeof o==='object')this.d=Object.assign({pass:'',ctx:'mix',c:{}},o)}catch(e){}},
+ save(){try{localStorage.setItem(AK,JSON.stringify(this.d))}catch(e){}},
+ list(id){return this.d.c[id]||[]},
+ cur(id){const l=this.list(id);return l[l.length-1]},
+ async gen(id){
+  if(this.busy>=0)return;const w=W[id];
+  if(!this.d.pass){this.err='Chưa có mã truy cập. Vào Cài đặt > Đặt câu bằng AI để nhập.';render();return}
+  if(!navigator.onLine){this.err='Không có mạng. Hãy kết nối lại rồi thử lại.';render();return}
+  this.busy=id;this.err='';render();
+  try{
+   const r=await fetch('/api/sentence',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:this.d.pass,word:w.word,pos:w.pos,meaning:w.meaning,ctx:this.d.ctx,avoid:this.list(id).map(x=>x.en)})});
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok){this.err=({pass:'Mã truy cập chưa đúng. Kiểm tra lại trong Cài đặt.',rate:'Bạn thử quá nhanh. Đợi một lúc rồi thử lại.',quota:'Đã hết lượt miễn phí tạm thời. Thử lại sau ít phút.',config:j.msg||'Server chưa cấu hình xong.',word:'Từ này không tạo câu được.',invalid:'AI trả về câu chưa hợp lệ. Bấm thử lại.'})[j.error]||'Chưa tạo được câu. Thử lại sau.'}
+   else{const l=this.d.c[id]||(this.d.c[id]=[]);l.push({en:j.en,vi:j.vi});if(l.length>5)l.shift();this.vi[id]=false;this.save()}
+  }catch(e){this.err='Không kết nối được máy chủ. Thử lại sau.'}
+  this.busy=-1;render()},
+ hl(en,word){const k=String(word).toLowerCase().split(/\s+/)[0].replace(/[^a-z'-]/g,'');const st=k.length>5?k.slice(0,-2):k.length>3?k.slice(0,-1):k;
+  const e=esc(en);if(!st)return e;return e.replace(new RegExp("\\b("+st.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+"[a-z']*)","i"),'<b>$1</b>')},
+ box(id){const w=W[id],c=this.cur(id),b=this.busy===id;
+  let h='<div class="ai" onclick="event.stopPropagation()">';
+  if(c){h+=`<div class="en">${this.hl(c.en,w.word)}</div>${this.vi[id]?`<div class="vi">${esc(c.vi)}</div>`:''}<div class="rw"><button class="sb" onclick="say(AI.cur(${id}).en)">${I('sound',18)} Nghe</button><button class="sb" onclick="AI.vi[${id}]=!AI.vi[${id}];render()">${this.vi[id]?'Ẩn nghĩa':'Xem nghĩa'}</button><button class="sb" ${b?'disabled':''} onclick="AI.gen(${id})">${b?'Đang tạo...':'Câu khác'}</button></div>`}
+  else h+=`<button class="sb" ${b?'disabled':''} onclick="AI.gen(${id})">${I('brain',18)} ${b?'Đang tạo câu...':'Đặt câu'}</button>`;
+  if(this.err)h+=`<div class="er">${esc(this.err)}</div>`;
+  return h+'</div>'}};
+AI.load();
+
 /* ===== FLASHCARD SESSION ===== */
 function startLearn(ids,title){
  if(!ids){const due=W.filter(w=>isDue(w.id)).sort((a,b)=>cd(a.id).due-cd(b.id).due).map(w=>w.id).slice(0,20);
@@ -122,7 +157,7 @@ function learnView(){
  let h=`<div class="row sp mu sm"><span>${esc(L.title)}</span><span>${L.i+1}/${L.q.length}</span></div><div class="bar" style="margin:8px 0 14px"><i style="width:${pct}%"></i></div>`;
  h+=`<div class="cd fc" role="button" tabindex="0" aria-label="Lật thẻ" onclick="A.flip()"><span class="tag">${esc(w.topic)} · ${esc(w.pos)}</span>`;
  if(!L.flip){h+=`<div class="fw">${esc(w.word)}</div>${w.pron?`<div class="mu">${esc(w.pron)}</div>`:''}<button class="ic" style="margin-top:14px" onclick="event.stopPropagation();say(W[${w.id}].word)" aria-label="Phát âm">${I('sound')}</button><p class="mu sm" style="margin-top:22px">Chạm để xem nghĩa</p>`}
- else h+=`<div class="fw" style="font-size:24px">${esc(w.word)}</div><div style="font-size:26px;font-weight:700;color:var(--pr);margin:10px 0">${esc(w.meaning)}</div><div class="mu">(${esc(w.pos)})</div>${w.example?`<p><i>${esc(w.example)}</i><br><span class="mu">${esc(w.translation)}</span></p>`:''}${w.synonyms?`<p class="sm">≈ ${esc(w.synonyms)}</p>`:''}${w.antonyms?`<p class="sm">≠ ${esc(w.antonyms)}</p>`:''}`;
+ else h+=`<div class="fw" style="font-size:24px">${esc(w.word)}</div><div style="font-size:26px;font-weight:700;color:var(--pr);margin:10px 0">${esc(w.meaning)}</div><div class="mu">(${esc(w.pos)})</div>${w.example?`<p><i>${esc(w.example)}</i><br><span class="mu">${esc(w.translation)}</span></p>`:''}${w.synonyms?`<p class="sm">≈ ${esc(w.synonyms)}</p>`:''}${w.antonyms?`<p class="sm">≠ ${esc(w.antonyms)}</p>`:''}${AI.box(w.id)}`;
  h+=`</div>`;
  h+=L.flip?`<div class="gr">${gbtn(w.id)}</div>`:`<button class="btn" onclick="A.flip()">Xem nghĩa</button>`;
  return h+`<button class="btn s" onclick="A.go('home')">Thoát</button>`}
@@ -208,6 +243,7 @@ function learnTab(){const d=cnt(isDue),n=cnt(id=>!seen(id));
 function setView(){return `<h1>Cài đặt</h1><div class="cd"><b>Mục tiêu mỗi ngày</b><div class="gr">${[5,10,20,30].map(n=>`<button class="btn ${S.goal===n?'':'s'}" style="margin:0" onclick="S.goal=${n};save();render()">${n} từ</button>`).join('')}</div><input type="number" inputmode="numeric" min="1" placeholder="Tùy chỉnh (${S.goal})" onchange="S.goal=Math.max(1,+this.value||S.goal);save();render()"></div>
  <div class="cd"><b>Giao diện</b><select onchange="S.theme=this.value;save();applyTheme();render()">${[['auto','Tự động'],['light','Sáng'],['dark','Tối']].map(x=>`<option value="${x[0]}" ${S.theme===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select></div>
  <div class="cd"><b>Âm thanh</b><select aria-label="Phát âm" onchange="S.sound=this.value!=='0';S.auto=this.value==='2';save()"><option value="0" ${S.sound?'':'selected'}>Tắt phát âm</option><option value="1" ${S.sound&&!S.auto?'selected':''}>Bật (chạm để nghe)</option><option value="2" ${S.sound&&S.auto?'selected':''}>Tự phát âm khi hiện thẻ</option></select><select onchange="S.rate=+this.value;save();say('essential')">${[[.6,'Chậm'],[.9,'Bình thường'],[1.1,'Nhanh']].map(x=>`<option value="${x[0]}" ${S.rate===x[0]?'selected':''}>Tốc độ: ${x[1]}</option>`).join('')}</select></div>
+ <div class="cd"><b>Đặt câu bằng AI</b><span class="mu sm" style="display:block;margin:4px 0 8px">Nhập mã truy cập bạn đặt trong Vercel (APP_PASSCODE). Mã chỉ lưu trên máy này.</span><input type="password" autocomplete="off" placeholder="Mã truy cập" value="${esc(AI.d.pass)}" onchange="AI.d.pass=this.value.trim();AI.save();AI.err=''"><select aria-label="Ngữ cảnh câu" style="margin-top:8px" onchange="AI.d.ctx=this.value;AI.save()">${[['mix','Ngữ cảnh: Tùy ý'],['work','Ngữ cảnh: Công việc'],['life','Ngữ cảnh: Đời sống']].map(x=>`<option value="${x[0]}" ${AI.d.ctx===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select></div>
  <div class="cd"><b>Sao lưu tiến trình</b><button class="btn" onclick="A.exp()">Xuất file sao lưu</button><input type="file" accept=".json,application/json" onchange="A.impF(this)"><textarea id="ta" rows="3" placeholder="Hoặc dán JSON vào đây" style="width:100%;margin-top:8px;border-radius:14px;padding:10px;font:14px monospace;background:var(--cd);color:var(--tx);border:1.5px solid var(--bd)"></textarea><button class="btn s" onclick="A.impT()">Import từ văn bản</button></div>
  <button class="btn d" onclick="A.wipe()">Reset toàn bộ tiến trình</button>`}
 
