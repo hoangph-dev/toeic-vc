@@ -36,8 +36,7 @@ function parse(t) {
   if (typeof o.en !== 'string' || typeof o.vi !== 'string') throw new Error('bad');
   return { en: o.en.trim(), vi: o.vi.trim() };
 }
-async function gemini(p) {
-  const model = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
+async function gemini(p, model) {
   const gc = { responseMimeType: 'application/json', maxOutputTokens: 1024, temperature: 1 };
   if (process.env.GEMINI_THINKING) gc.thinkingConfig = { thinkingLevel: process.env.GEMINI_THINKING };
   const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
@@ -94,12 +93,17 @@ module.exports = async (req, res) => {
   const useClaude = (process.env.PROVIDER || '').toLowerCase() === 'claude';
   if (!(useClaude ? process.env.ANTHROPIC_API_KEY : process.env.GEMINI_API_KEY)) return send(500, { error: 'config', msg: 'Server chưa có API key' });
   try {
-    let out;
-    for (let i = 0; i < 2; i++) {
-      try { out = await (useClaude ? claude : gemini)(prompt(q)); } catch (e) { if (i || e.status) throw e; continue; }
-      if (has(out.en, word) && out.en.length < 200 && out.vi) break;
-      out = null;
+    let out = null, last = null;
+    const models = useClaude ? [''] : (process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite,gemini-3.5-flash-lite,gemini-3.6-flash').split(',').map(x => x.trim()).filter(Boolean);
+    for (const m of models) { // quá tải / hết lượt / sai tên model: thử model kế tiếp
+      for (let i = 0; i < 2 && !out; i++) {
+        try { out = await (useClaude ? claude(prompt(q)) : gemini(prompt(q), m)); }
+        catch (e) { last = e; if (e.status) break; continue; }
+        if (!(has(out.en, word) && out.en.length < 200 && out.vi)) out = null;
+      }
+      if (out) break;
     }
+    if (!out && last) throw last;
     if (!out) return send(502, { error: 'invalid' });
     return send(200, out);
   } catch (e) {
